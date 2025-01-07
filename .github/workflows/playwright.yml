@@ -1,0 +1,33 @@
+name: Run Playwright Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  playwright-tests:
+    name: Run Playwright Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Playwright dependencies
+        working-directory: playwright-tests
+        run: npm install
+
+      - name: Install Playwright Browsers
+        working-directory: playwright-tests
+        run: npx playwright install
+
+      - name: Run Playwright Tests
+        working-directory: playwright-tests
+        run: npx playwright test

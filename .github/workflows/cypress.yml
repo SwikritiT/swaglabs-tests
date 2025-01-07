@@ -1,0 +1,29 @@
+name: Run Cypress Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  cypress-tests:
+    name: Run Cypress Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Cypress dependencies
+        working-directory: cypress-tests
+        run: npm install
+
+      - name: Run Cypress Tests
+        working-directory: cypress-tests
+        run: npx cypress run

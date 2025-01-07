@@ -1,0 +1,17 @@
+{
+	"name": "swaglabs-cypress",
+	"version": "1.0.0",
+	"description": "Test automation with Cypress",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"cy:open": "cypress open",
+		"cy:run": "cypress run",
+		"cy:run:chrome": "cypress run --browser chrome"
+	},
+	"author": "Swikriti",
+	"license": "ISC",
+	"devDependencies": {
+		"cypress": "^13.17.0"
+	}
+}

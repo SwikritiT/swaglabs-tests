@@ -192,4 +192,25 @@ In headed mode, Playwright completed the tests in around 16.3 seconds. The execu
 
 ### In CI
 
-I created two workflows for running tests in GitHub actions to see the execution time in CI. The workflow files can be found [here](https://github.com/SwikritiT/swaglabs-tests/tree/main/.github/workflows)
+I created two workflows for running tests in GitHub actions to see the execution time in CI. The workflow files can be found [here](https://github.com/SwikritiT/swaglabs-tests/tree/main/.github/workflows). Both frameworks are set to run in Chrome browser.
+
+**Cypress Execution in CI**
+
+```bash
+ (Run Finished)
+
+
+       Spec                                              Tests  Passing  Failing  Pending  Skipped
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ ✔  addToCart.cy.js                          00:05        2        2        -        -        - │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ✔  checkout.cy.js                           00:06        2        2        -        -        - │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ✔  login.cy.js                              00:04        5        5        -        -        - │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+    ✔  All specs passed!                        00:17        9        9        -        -        -
+```
+The total time for test execution took `17 sec`. And the time for the whole CI execution was `1min 40sec` for Cypress
+
+![CI pipline cypress execution](image.png)
+

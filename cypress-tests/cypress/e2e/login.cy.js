@@ -45,6 +45,10 @@ describe("Login", () => {
 
 	afterEach(() => {
 		cy.url().should("eq", "https://www.saucedemo.com/v1/index.html")
+	})
+
+	after(() => {
 		cy.clearCookies()
+		cy.clearLocalStorage()
 	})
 })

@@ -23,4 +23,9 @@ describe("Checkout", () => {
 	afterEach(() => {
 		teardown()
 	})
+
+	after(() => {
+		cy.clearCookies()
+		cy.clearLocalStorage()
+	})
 })

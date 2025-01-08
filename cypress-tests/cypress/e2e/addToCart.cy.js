@@ -21,4 +21,9 @@ describe("Add to cart", () => {
 	afterEach(() => {
 		teardown()
 	})
+
+	after(() => {
+		cy.clearCookies()
+		cy.clearLocalStorage()
+	})
 })

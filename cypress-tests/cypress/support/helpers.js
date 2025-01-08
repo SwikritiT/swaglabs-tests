@@ -1,5 +1,6 @@
+const baseUrl = "https://www.saucedemo.com/v1/index.html"
 export function login(username, password) {
-	cy.visit("https://www.saucedemo.com/v1/index.html")
+	cy.visit(baseUrl)
 	cy.get(".login_logo").should("be.visible")
 	cy.get("[data-test='username']").type(username)
 	cy.get("[data-test='password']").type(password)
@@ -11,7 +12,7 @@ export function teardown() {
 	cy.contains("Open Menu").click()
 	cy.contains("Reset App State").click()
 	cy.contains("Logout").click()
-	cy.url().should("eq", "https://www.saucedemo.com/v1/index.html")
+	cy.url().should("eq", baseUrl)
 	cy.clearCookies()
 }
 

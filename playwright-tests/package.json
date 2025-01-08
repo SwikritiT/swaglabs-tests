@@ -3,8 +3,8 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"scripts": {
-		"pw:run": "playwright test ./tests/*.spec.js",
-		"pw:run:chrome": "playwright test ./tests/*.spec.js --project=chromium"
+		"pw:run": "playwright test ./tests/*.spec.js --reporter=list",
+		"pw:run:headed": "playwright test ./tests/*.spec.js --headed --reporter=list"
 	},
 	"keywords": [],
 	"author": "",

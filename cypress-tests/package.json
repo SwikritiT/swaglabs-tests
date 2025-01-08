@@ -6,8 +6,8 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"cy:open": "cypress open",
-		"cy:run": "cypress run",
-		"cy:run:chrome": "cypress run --browser chrome"
+		"cy:run": "cypress run --browser chrome",
+		"cy:run:headed": "cypress run --browser chrome --headed"
 	},
 	"author": "Swikriti",
 	"license": "ISC",

@@ -210,7 +210,29 @@ I created two workflows for running tests in GitHub actions to see the execution
   └────────────────────────────────────────────────────────────────────────────────────────────────┘
     ✔  All specs passed!                        00:17        9        9        -        -        -
 ```
+
 The total time for test execution took `17 sec`. And the time for the whole CI execution was `1min 40sec` for Cypress
 
 ![CI pipline cypress execution](image.png)
 
+**Playwright Execution in CI**
+
+```bash
+Running 9 tests using 1 worker
+
+  ✓  1 [chromium] › addToCart.spec.js:9:6 › Add to cart › user adds a item to cart (1.5s)
+  ✓  2 [chromium] › addToCart.spec.js:13:6 › Add to cart › user adds multiple items to cart (1.6s)
+  ✓  3 [chromium] › checkout.spec.js:9:6 › checkout › user checks-out a item from the cart (1.6s)
+  ✓  4 [chromium] › checkout.spec.js:14:6 › checkout › user checks-out multiple items from the cart (1.7s)
+  ✓  5 [chromium] › login.spec.js:9:6 › Login › normal user logs in (1.3s)
+  ✓  6 [chromium] › login.spec.js:18:6 › Login › locked out user logs in (188ms)
+  ✓  7 [chromium] › login.spec.js:28:6 › Login › user logs in with no password (164ms)
+  ✓  8 [chromium] › login.spec.js:37:6 › Login › user submits empty form (162ms)
+  ✓  9 [chromium] › login.spec.js:45:6 › Login › user logs in with incorrect password (177ms)
+
+  9 passed (10.0s)
+```
+
+The test pipeline took `10 sec` in Playwight and whole CI execution was `42 sec` making it significantly better than Cypress. 
+
+![CI pipline Playwright execution](image-1.png)

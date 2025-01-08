@@ -30,4 +30,4 @@ jobs:
 
       - name: Run Playwright Tests
         working-directory: playwright-tests
-        run: npx playwright test
+        run: npx playwright test --reporter=list

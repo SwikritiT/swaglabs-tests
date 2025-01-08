@@ -26,4 +26,4 @@ jobs:
 
       - name: Run Cypress Tests
         working-directory: cypress-tests
-        run: npx cypress run
+        run: npx cypress run --browser chrome

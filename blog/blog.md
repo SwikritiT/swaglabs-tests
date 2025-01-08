@@ -211,7 +211,7 @@ I created two workflows for running tests in GitHub actions to see the execution
     ✔  All specs passed!                        00:17        9        9        -        -        -
 ```
 
-The total time for test execution took `17 sec`. And the time for the whole CI execution was `1min 40sec` for Cypress
+The total time for test execution took `17 sec`. And the time for the whole CI execution was `1min 40sec` for Cypress. The test execution range was from `15-17` sec with `16 sec` average.
 
 ![CI pipline cypress execution](image.png)
 
@@ -233,6 +233,10 @@ Running 9 tests using 1 worker
   9 passed (10.0s)
 ```
 
-The test pipeline took `10 sec` in Playwight and whole CI execution was `42 sec` making it significantly better than Cypress. 
+The test pipeline took `10 sec` in Playwight and whole CI execution was `42 sec` making it significantly better than Cypress. The test execution range was `9-12 sec` with average of `10.5 sec`
 
 ![CI pipline Playwright execution](image-1.png)
+
+
+Playwright tests run significantly faster in CI as well making them time efficient.
+![alt text](image-2.png)

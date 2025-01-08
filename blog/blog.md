@@ -168,7 +168,7 @@ Running 9 tests using 1 worker
 
 In headed mode, Playwright completed the tests in around 16.3 seconds. The execution time ranged from 15 to 16 seconds, with an average of 15.5 seconds. This is still quicker than Cypress, despite a slight overhead in headed mode.
 
-### **Summary of Test Execution in Local Machine**
+### **Execution Time Summary Table in Local Machine**
 
 | **Mode**     | **Framework** | **Average Execution Time** | **Execution Range** |
 | ------------ | ------------- | -------------------------- | ------------------- |
@@ -192,7 +192,7 @@ In headed mode, Playwright completed the tests in around 16.3 seconds. The execu
 
 ### In CI
 
-I created two workflows for running tests in GitHub actions to see the execution time in CI. The workflow files can be found [here](https://github.com/SwikritiT/swaglabs-tests/tree/main/.github/workflows). Both frameworks are set to run in Chrome browser.
+To evaluate execution times in CI environments, I created two workflows in GitHub Actions for running tests with Cypress and Playwright. Both frameworks were configured to run tests using the Chrome browser. The workflow files can be found [here](https://github.com/SwikritiT/swaglabs-tests/tree/main/.github/workflows). Below are the results:
 
 **Cypress Execution in CI**
 
@@ -211,7 +211,9 @@ I created two workflows for running tests in GitHub actions to see the execution
     ✔  All specs passed!                        00:17        9        9        -        -        -
 ```
 
-The total time for test execution took `17 sec`. And the time for the whole CI execution was `1min 40sec` for Cypress. The test execution range was from `15-17` sec with `16 sec` average.
+- **Test Execution Time**: The tests took a total of 17 seconds to execute.
+- **Full CI Pipeline Duration**: The complete CI pipeline, including setup and test execution, took 1 minute and 40 seconds.
+- **Execution Time Range**: The test execution time ranged from 15–17 seconds, with an average of 16 seconds.
 
 ![CI pipline cypress execution](image.png)
 
@@ -233,10 +235,28 @@ Running 9 tests using 1 worker
   9 passed (10.0s)
 ```
 
-The test pipeline took `10 sec` in Playwight and whole CI execution was `42 sec` making it significantly better than Cypress. The test execution range was `9-12 sec` with average of `10.5 sec`
+- **Test Execution Time**: The tests were completed in 10 seconds.
+- **Full CI Pipeline Duration**: The complete CI pipeline took only 42 seconds.
+- **Execution Time Range**: The test execution time ranged from 9–12 seconds, with an average of 10.5 seconds.
 
 ![CI pipline Playwright execution](image-1.png)
 
 
 Playwright tests run significantly faster in CI as well making them time efficient.
-![alt text](image-2.png)
+![GitHub Actions page](image-3.png)
+
+
+### **Execution Time Summary Table in CI**
+
+| **Framework**   | **Test Execution Time** | **Full CI Duration** | **TestExecution Range** | **Average Execution Time** |
+|------------------|--------------------------|-----------------------|----------------------|----------------------------|
+| **Cypress**      | 17 seconds              | 1 minute 40 seconds   | 15–17 seconds        | 16 seconds                 |
+| **Playwright**   | 10 seconds              | 42 seconds            | 9–12 seconds         | 10.5 seconds               |
+
+#### **Key Observations**
+
+- **Speed**: Playwright significantly outperformed Cypress in both test execution and overall CI pipeline duration.
+  - Playwright's test execution was nearly 1.6x faster than Cypress (10.5 seconds vs. 16 seconds on average).
+  - The overall CI pipeline for Playwright was 2.4x faster (42 seconds vs. 1 minute and 40 seconds).  
+- **Efficiency**: Playwright tests run more efficiently in CI, saving both time and resources.  
+- **Time Ranges**: Playwright showed lower execution time variability (9–12 seconds) compared to Cypress (15–17 seconds).

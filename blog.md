@@ -71,6 +71,8 @@ Each framework contains 3 test suites with a total of 9 tests:
 - Add to Cart Suite: 2 tests
 - Checkout Suite: 2 tests
 
+### In Local Machine
+
 The tests were executed in both headless and headed modes using the Chrome browser.
 
 **Cypress Execution in Headless Mode**
@@ -187,3 +189,7 @@ In headed mode, Playwright completed the tests in around 16.3 seconds. The execu
 2. **Cypress performance is consistent** across headed and headless modes.
 
 3. **Playwright exhibits slight overhead in headed mode** compared to headless mode but remains faster than Cypress in both modes.
+
+### In CI
+
+I created two workflows for running tests in GitHub actions to see the execution time in CI. The workflow files can be found [here](https://github.com/SwikritiT/swaglabs-tests/tree/main/.github/workflows)

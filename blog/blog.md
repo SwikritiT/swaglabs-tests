@@ -100,6 +100,7 @@ The tests were executed in both headless and headed modes using the Chrome brows
 Cypress executed the tests in 26 seconds, with repeated runs showing execution times ranging from 21 seconds to 26 seconds, averaging 24 seconds.
 
 **Playwright Execution in Headless Mode**
+
 By default, Playwright runs tests in parallel across multiple workers. To ensure a fair comparison with Cypress, I configured Playwright to run tests sequentially with a single worker by updating the `playwright.config.js` file:
 
 ```js
@@ -624,9 +625,10 @@ Total CI Execution Time: 45 seconds
 |                | Local           | Both Browsers   | Combined | 44 seconds                    | 40–44 seconds            | N/A               | N/A               |
 | **Playwright** | Local           | Chrome          | Headless | 14 seconds                    | 13–15 seconds            | N/A               | N/A               |
 |                | Local           | Chrome          | Headed   | 15.5 seconds                  | 15–16 seconds            | N/A               | N/A               |
-|                | CI              | Chrome          | Headless | 24 seconds                    | 23–25 seconds            | 25 seconds        | 45 seconds        |
-|                | Local           | Chrome, Firefox | Combined | 31 seconds                    | 30–33 seconds            | N/A               | N/A               |
+|                | CI              | Chrome          | Headless | 10.5 seconds                  | 9–12 seconds            | 25 seconds        | 42 seconds        |
+|                | Local           | Chrome, Firefox | Headless | 31 seconds                    | 30–33 seconds            | N/A               | N/A               |
 |                | Local           | Chrome, Firefox | Headed   | 36 seconds                    | 33–36 seconds            | N/A               | N/A               |
+|                | CI              | Chrome, Firefox | Headless | 22 seconds                  | 20-24 seconds              | 25 seconds        | 45 seconds
 
 ---
 

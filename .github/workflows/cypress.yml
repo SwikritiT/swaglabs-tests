@@ -30,4 +30,4 @@ jobs:
 
       - name: Run Cypress Tests in firefox
         working-directory: cypress-tests
-        run: npx cypress run --browser chrome
+        run: npx cypress run --browser firefox

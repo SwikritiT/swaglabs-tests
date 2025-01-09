@@ -486,3 +486,7 @@ It took around 36 sec for Playwright to run tests in both browsers in headed mod
 3. **General**:
    - Playwright is better suited for scenarios requiring multi-browser compatibility testing due to its concurrency capabilities.
    - Cypress is reliable but less efficient for multi-browser testing because of its lack of native concurrency.
+
+### Multibrowser Test execution in CI
+
+I updated the workflow to execute test in multiple browsers(chrome and firefox) in CI and this is how each framework performed.

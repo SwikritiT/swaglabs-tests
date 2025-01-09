@@ -20,6 +20,8 @@ I created three test files for each framework, covering the following functional
 
 To ensure a fair comparison, I used the same selectors and functions as much as possible, across both frameworks. This approach helps maintain consistency and minimizes discrepancies in the results.
 
+---
+
 ## File structure
 
 For this project, I created a root directory named `swaglabs-tests`, which contains two sub-folders: `cypress-tests` and `playwright-tests`.
@@ -62,6 +64,8 @@ playwright-tests
  ┣ package.json
  ┗ playwright.config.js
 ```
+
+---
 
 ## Test execution
 
@@ -128,6 +132,8 @@ Running 9 tests using 1 worker
 
 Playwright completed the execution in around 14 seconds, with repeated runs ranging from 13 seconds to 15 seconds, averaging at 14 seconds. This is almost half the time Cypress took.
 
+---
+
 **Cypress Execution in Headed Mode**
 
 ```bash
@@ -190,6 +196,8 @@ In headed mode, Playwright completed the tests in around 16.3 seconds. The execu
 
 3. **Playwright exhibits slight overhead in headed mode** compared to headless mode but remains faster than Cypress in both modes.
 
+---
+
 ### In CI
 
 To evaluate execution times in CI environments, I created two workflows in GitHub Actions for running tests with Cypress and Playwright. Both frameworks were configured to run tests using the Chrome browser. The workflow files can be found [here](https://github.com/SwikritiT/swaglabs-tests/tree/main/.github/workflows). Below are the results:
@@ -217,6 +225,8 @@ To evaluate execution times in CI environments, I created two workflows in GitHu
 
 ![CI pipline cypress execution](image.png)
 
+---
+
 **Playwright Execution in CI**
 
 ```bash
@@ -241,22 +251,238 @@ Running 9 tests using 1 worker
 
 ![CI pipline Playwright execution](image-1.png)
 
-
 Playwright tests run significantly faster in CI as well making them time efficient.
 ![GitHub Actions page](image-3.png)
 
-
 ### **Execution Time Summary Table in CI**
 
-| **Framework**   | **Test Execution Time** | **Full CI Duration** | **TestExecution Range** | **Average Execution Time** |
-|------------------|--------------------------|-----------------------|----------------------|----------------------------|
-| **Cypress**      | 17 seconds              | 1 minute 40 seconds   | 15–17 seconds        | 16 seconds                 |
-| **Playwright**   | 10 seconds              | 42 seconds            | 9–12 seconds         | 10.5 seconds               |
+| **Framework**  | **Test Execution Time** | **Full CI Duration** | **TestExecution Range** | **Average Execution Time** |
+| -------------- | ----------------------- | -------------------- | ----------------------- | -------------------------- |
+| **Cypress**    | 17 seconds              | 1 minute 40 seconds  | 15–17 seconds           | 16 seconds                 |
+| **Playwright** | 10 seconds              | 42 seconds           | 9–12 seconds            | 10.5 seconds               |
 
-#### **Key Observations**
+---
+
+### **Key Observations**
 
 - **Speed**: Playwright significantly outperformed Cypress in both test execution and overall CI pipeline duration.
   - Playwright's test execution was nearly 1.6x faster than Cypress (10.5 seconds vs. 16 seconds on average).
-  - The overall CI pipeline for Playwright was 2.4x faster (42 seconds vs. 1 minute and 40 seconds).  
-- **Efficiency**: Playwright tests run more efficiently in CI, saving both time and resources.  
+  - The overall CI pipeline for Playwright was 2.4x faster (42 seconds vs. 1 minute and 40 seconds).
+- **Efficiency**: Playwright tests run more efficiently in CI, saving both time and resources.
 - **Time Ranges**: Playwright showed lower execution time variability (9–12 seconds) compared to Cypress (15–17 seconds).
+
+---
+
+## Test Execution in Multiple Browser
+
+I executed the test suite in **Chrome** and **Firefox** to evaluate cross-browser compatibility and performance. Here is how each framework performed:
+
+---
+
+### **Cypress Cross-Browser Test Execution**
+
+Cypress does not natively support running tests across multiple browsers in a single command, requiring separate executions for each browser. This means tests had to be run individually for Chrome and Firefox.
+
+Additionally, Cypress uses Playwright's WebKit engine for WebKit testing, which is still in the **experimental stage**. When attempting to execute tests in WebKit, I encountered an error that I was unable to resolve, so results for WebKit are unavailable.
+
+---
+
+**Chrome headless**
+
+```bash
+
+  (Run Finished)
+
+
+       Spec                                              Tests  Passing  Failing  Pending  Skipped
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ ✔  addToCart.cy.js                          00:06        2        2        -        -        - │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ✔  checkout.cy.js                           00:09        2        2        -        -        - │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ✔  login.cy.js                              00:05        5        5        -        -        - │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+    ✔  All specs passed!                        00:21        9        9        -        -        -
+
+```
+
+The total test execution time in Chrome ranged between **19-22 seconds**, with an average execution time of **21 seconds**. This time is better than what I observed earlier, while executing tests in Chrome.
+
+**Firefox headless**
+
+```bash
+  (Run Finished)
+
+
+       Spec                                              Tests  Passing  Failing  Pending  Skipped
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ ✔  addToCart.cy.js                          00:06        2        2        -        -        - │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ✔  checkout.cy.js                           00:08        2        2        -        -        - │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ✔  login.cy.js                              00:06        5        5        -        -        - │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+    ✔  All specs passed!                        00:21        9        9        -        -        -
+
+```
+
+The total test execution time in Firefox ranged between **21-22 seconds**, with an average execution time of **22 seconds**.
+
+On average it took around **43 seconds** to run tests on both the browsers in headless mode.
+
+---
+
+**Chrome headed**
+
+```bash
+
+  (Run Finished)
+
+
+       Spec                                              Tests  Passing  Failing  Pending  Skipped
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ ✔  addToCart.cy.js                          00:05        2        2        -        -        - │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ✔  checkout.cy.js                           00:07        2        2        -        -        - │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ✔  login.cy.js                              00:05        5        5        -        -        - │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+    ✔  All specs passed!                        00:19        9        9        -        -        -
+
+```
+
+The total test execution time in Chrome ranged between 19-21 seconds, with an average execution time of 22 seconds. This time around the Cypress is faster compared to previous runs.
+
+**Firefox headed**
+
+```bash
+
+  (Run Finished)
+
+
+       Spec                                              Tests  Passing  Failing  Pending  Skipped
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ ✔  addToCart.cy.js                          00:08        2        2        -        -        - │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ✔  checkout.cy.js                           00:09        2        2        -        -        - │
+  ├────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ ✔  login.cy.js                              00:06        5        5        -        -        - │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+    ✔  All specs passed!                        00:23        9        9        -        -        -
+```
+
+The total test execution time in Firefox ranged between 21-22 seconds, with an average execution time of 22 seconds.
+
+On average it took around **44 seconds** to run tests on both the browsers in headed mode.
+
+---
+
+### **Playwright Cross-Browser Test Execution**
+
+Playwright natively supports running tests across multiple browsers with a single command. By configuring browser-specific projects in the Playwright configuration file, tests can be executed concurrently on all configured browsers. Here’s how I configured and executed tests in Chrome and Firefox.
+
+```js
+//playwright.config.js
+
+export default defineConfig({
+    .....
+	projects: [
+    ...
+    		{
+			name: "firefox",
+			use: { ...devices["Desktop Firefox"] },
+		},
+  ]
+})
+```
+
+**Headless in Chrome and Firefox**
+
+```bash
+Running 18 tests using 1 worker
+
+  ✓  1 [chromium] › addToCart.spec.js:9:6 › Add to cart › user adds a item to cart (3.4s)
+  ✓  2 [chromium] › addToCart.spec.js:13:6 › Add to cart › user adds multiple items to cart (1.8s)
+  ✓  3 [chromium] › checkout.spec.js:9:6 › checkout › user checks-out a item from the cart (2.3s)
+  ✓  4 [chromium] › checkout.spec.js:14:6 › checkout › user checks-out multiple items from the cart (2.3s)
+  ✓  5 [chromium] › login.spec.js:9:6 › Login › normal user logs in (1.5s)
+  ✓  6 [chromium] › login.spec.js:18:6 › Login › locked out user logs in (443ms)
+  ✓  7 [chromium] › login.spec.js:28:6 › Login › user logs in with no password (435ms)
+  ✓  8 [chromium] › login.spec.js:37:6 › Login › user submits empty form (434ms)
+  ✓  9 [chromium] › login.spec.js:45:6 › Login › user logs in with incorrect password (446ms)
+  ✓  10 [firefox] › addToCart.spec.js:9:6 › Add to cart › user adds a item to cart (2.6s)
+  ✓  11 [firefox] › addToCart.spec.js:13:6 › Add to cart › user adds multiple items to cart (2.4s)
+  ✓  12 [firefox] › checkout.spec.js:9:6 › checkout › user checks-out a item from the cart (3.0s)
+  ✓  13 [firefox] › checkout.spec.js:14:6 › checkout › user checks-out multiple items from the cart (3.2s)
+  ✓  14 [firefox] › login.spec.js:9:6 › Login › normal user logs in (2.1s)
+  ✓  15 [firefox] › login.spec.js:18:6 › Login › locked out user logs in (745ms)
+  ✓  16 [firefox] › login.spec.js:28:6 › Login › user logs in with no password (697ms)
+  ✓  17 [firefox] › login.spec.js:37:6 › Login › user submits empty form (677ms)
+  ✓  18 [firefox] › login.spec.js:45:6 › Login › user logs in with incorrect password (701ms)
+
+  18 passed (31.1s)
+```
+
+Playwright took 31.1 sec for running all the tests in 2 browsers. Execution time ranged from 30-33 seconds with average execution time: 31 seconds.
+
+
+**Headed mode in Chrome and Firefox**
+
+```bash
+Running 18 tests using 1 worker
+
+  ✓  1 [chromium] › addToCart.spec.js:9:6 › Add to cart › user adds a item to cart (3.3s)
+  ✓  2 [chromium] › addToCart.spec.js:13:6 › Add to cart › user adds multiple items to cart (2.0s)
+  ✓  3 [chromium] › checkout.spec.js:9:6 › checkout › user checks-out a item from the cart (2.5s)
+  ✓  4 [chromium] › checkout.spec.js:14:6 › checkout › user checks-out multiple items from the cart (2.7s)
+  ✓  5 [chromium] › login.spec.js:9:6 › Login › normal user logs in (1.7s)
+  ✓  6 [chromium] › login.spec.js:18:6 › Login › locked out user logs in (546ms)
+  ✓  7 [chromium] › login.spec.js:28:6 › Login › user logs in with no password (540ms)
+  ✓  8 [chromium] › login.spec.js:37:6 › Login › user submits empty form (517ms)
+  ✓  9 [chromium] › login.spec.js:45:6 › Login › user logs in with incorrect password (554ms)
+  ✓  10 [firefox] › addToCart.spec.js:9:6 › Add to cart › user adds a item to cart (3.3s)
+  ✓  11 [firefox] › addToCart.spec.js:13:6 › Add to cart › user adds multiple items to cart (2.7s)
+  ✓  12 [firefox] › checkout.spec.js:9:6 › checkout › user checks-out a item from the cart (3.6s)
+  ✓  13 [firefox] › checkout.spec.js:14:6 › checkout › user checks-out multiple items from the cart (3.8s)
+  ✓  14 [firefox] › login.spec.js:9:6 › Login › normal user logs in (2.3s)
+  ✓  15 [firefox] › login.spec.js:18:6 › Login › locked out user logs in (1.0s)
+  ✓  16 [firefox] › login.spec.js:28:6 › Login › user logs in with no password (869ms)
+  ✓  17 [firefox] › login.spec.js:37:6 › Login › user submits empty form (824ms)
+  ✓  18 [firefox] › login.spec.js:45:6 › Login › user logs in with incorrect password (833ms)
+
+  18 passed (36.3s)
+
+```
+
+It took around 36 sec for Playwright to run tests in both browsers in headed mode. Execution time ranged from 33-36 seconds with average execution time: 36 seconds.
+
+### **Summary Table: Test Execution in Multiple Browsers**
+
+| **Framework** | **Browser**    | **Mode**     | **Execution Time (Avg)** | **Execution Time Range** |
+|---------------|----------------|--------------|--------------------------|---------------------------|
+| **Cypress**   | Chrome         | Headless     | 21 seconds              | 19-22 seconds            |
+|               | Firefox        | Headless     | 22 seconds              | 21-22 seconds            |
+|               | Both Browsers  | Combined     | 43 seconds              | 40-44 seconds            |
+|               | Chrome         | Headed       | 22 seconds              | 19-22 seconds            |
+|               | Firefox        | Headed       | 22 seconds              | 21-22 seconds            |
+|               | Both Browsers  | Combined     | 44 seconds              | 40-44 seconds            |
+| **Playwright**| Chrome, Firefox| Headless     | 31 seconds              | 30-33 seconds            |
+|               | Chrome, Firefox| Headed       | 36 seconds              | 33-36 seconds            |
+
+---
+
+### **Key Observations**:
+
+1. **Cypress**:
+   - Lacks native support for multi-browser execution, requiring tests to be run separately for each browser, leading to longer combined execution times.
+   - WebKit support is still experimental, and errors prevented execution in this browser.
+   - Test execution times for Chrome and Firefox are consistent and comparable.
+
+2. **Playwright**:
+   - Supports concurrent multi-browser execution natively, saving time and effort.
+   - Significantly faster overall test execution compared to Cypress when testing in both browsers.
+   - Headed mode is slightly slower than headless but still efficient compared to Cypress.
+
+3. **General**:
+   - Playwright is better suited for scenarios requiring multi-browser compatibility testing due to its concurrency capabilities.
+   - Cypress is reliable but less efficient for multi-browser testing because of its lack of native concurrency.

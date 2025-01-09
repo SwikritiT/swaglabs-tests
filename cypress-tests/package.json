@@ -6,12 +6,16 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"cy:open": "cypress open",
-		"cy:run": "cypress run --browser chrome",
-		"cy:run:headed": "cypress run --browser chrome --headed"
+		"cy:run:chrome": "cypress run --browser chrome",
+		"cy:run:firefox": "cypress run --browser firefox",
+		"cy:run:webkit": "cypress run --browser webkit",
+		"cy:run:chrome:headed": "cypress run --browser chrome --headed",
+		"cy:run:firefox:headed": "cypress run --browser firefox --headed"
 	},
 	"author": "Swikriti",
 	"license": "ISC",
 	"devDependencies": {
-		"cypress": "^13.17.0"
+		"cypress": "^13.17.0",
+		"playwright-webkit": "^1.49.1"
 	}
 }

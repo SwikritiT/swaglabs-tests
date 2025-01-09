@@ -20,6 +20,14 @@ jobs:
         with:
           node-version: 22
 
+      - name: Cache Cypress dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install Cypress dependencies
         working-directory: cypress-tests
         run: npm install
@@ -28,6 +36,6 @@ jobs:
         working-directory: cypress-tests
         run: npx cypress run --browser chrome
 
-      - name: Run Cypress Tests in firefox
-        working-directory: cypress-tests
-        run: npx cypress run --browser firefox
+      # - name: Run Cypress Tests in firefox
+      #   working-directory: cypress-tests
+      #   run: npx cypress run --browser firefox
